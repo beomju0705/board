@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>도서관</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    </head>
+
+    <body>
+        <div class="container mt-5">
+            <h1>도서관</h1>
+
+            <table class="table table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th>책 제목</th>
+                        <th>저자</th>
+                        <th>출판일</th>
+                    </tr>
+                </thead>
+
+                {% for book in object_list %}
+                    <tr onclick="location.href='{% url 'book-detail' book.pk %}'" style="cursor: pointer;">
+                        <td>{{book.title}}</td>
+                        <td>{{book.author}}</td>
+                        <td>{{book.pub_date}}</td>
+                    </tr>
+
+                {% endfor %}
+            </table>
+            <a href="{% url 'book-new' %}" class="btn btn-primary">책 추가하기</a>
+        </div>
+    </body>
+</html>
